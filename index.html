@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramazanoğlu Tech — R&D and Engineering Practice</title>
+    <meta name="description" content="Ramazanoğlu Tech is an independent engineering studio developing clinical navigation systems, real-time computer vision pipelines, and mission-critical software.">
+    
+    <!-- Google Fonts: Inter, Instrument Serif, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#FBFBF9',
+                        paperMuted: '#F3F3EF',
+                        ink: '#111111',
+                        slateMuted: '#555555',
+                        slateLight: '#888884',
+                        hairline: '#E2E2DF',
+                        intlOrange: '#D9381E'
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Strict Swiss Architectural Styling - Zero Border Radius, No Glows */
+        * {
+            border-radius: 0px !important;
+        }
+        body {
+            background-color: #FBFBF9;
+            color: #111111;
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .hairline-t { border-top: 1px solid #E2E2DF; }
+        .hairline-b { border-bottom: 1px solid #E2E2DF; }
+        .hairline-l { border-left: 1px solid #E2E2DF; }
+        .hairline-r { border-right: 1px solid #E2E2DF; }
+        .hairline-box { border: 1px solid #E2E2DF; }
+
+        /* Subtle Hover Transitions */
+        .row-hover {
+            transition: background-color 0.15s ease;
+        }
+        .row-hover:hover {
+            background-color: #F3F3EF;
+        }
+
+        /* Custom Minimalist Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FBFBF9;
+            border-left: 1px solid #E2E2DF;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CCCCCC;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #111111;
+        }
+    </style>
+</head>
+<body class="font-sans selection:bg-ink selection:text-paper min-h-screen flex flex-col">
+
+    <!-- Minimalist Architectural Notification Bar (Clipboard Feedback) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition-all duration-200 pointer-events-none">
+        <div class="bg-ink text-paper px-5 py-3.5 hairline-box flex items-center gap-3 shadow-sm">
+            <span class="w-2 h-2 bg-intlOrange inline-block"></span>
+            <span id="toast-text" class="font-mono text-xs uppercase tracking-wider">COPIED: YUSUF@RAMAZANOGLU.TECH</span>
+        </div>
+    </div>
+
+    <!-- Outer Architectural Frame -->
+    <div class="max-w-[1360px] w-full mx-auto hairline-l hairline-r flex-grow flex flex-col">
+
+        <!-- 1. TOP ARCHITECTURAL HEADER -->
+        <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-sm hairline-b">
+            <div class="grid grid-cols-12 items-center h-16 sm:h-20">
+                
+                <!-- Brand Mark (Cols 1-6 on Desktop) -->
+                <div class="col-span-8 sm:col-span-6 lg:col-span-5 px-5 sm:px-8 h-full flex items-center hairline-r">
+                    <a href="#" class="inline-flex items-baseline gap-2 focus:outline-none group">
+                        <span class="text-sm sm:text-base font-bold tracking-tight uppercase text-ink">RAMAZANOĞLU TECH</span>
+                        <span class="w-1.5 h-1.5 bg-intlOrange inline-block opacity-90 group-hover:scale-125 transition-transform"></span>
+                    </a>
+                </div>
+
+                <!-- Navigation Links (Cols 6-10 on Desktop) -->
+                <nav class="hidden lg:flex lg:col-span-5 h-full items-center px-8 gap-10 text-xs font-mono uppercase tracking-widest text-slateMuted hairline-r">
+                    <a href="#practice" class="hover:text-ink transition-colors" data-i18n="nav_practice">Practice</a>
+                    <a href="#research" class="hover:text-ink transition-colors" data-i18n="nav_research">Research</a>
+                    <a href="#architecture" class="hover:text-ink transition-colors" data-i18n="nav_architecture">Specifications</a>
+                    <a href="#contact" class="hover:text-ink transition-colors" data-i18n="nav_contact">Contact</a>
+                </nav>
+
+                <!-- Language Switcher & Mobile Trigger -->
+                <div class="col-span-4 sm:col-span-6 lg:col-span-2 h-full flex items-center justify-end sm:justify-between px-5 sm:px-8">
+                    <span class="hidden sm:inline-block lg:hidden font-mono text-[11px] text-slateLight uppercase tracking-wider">IST / TR</span>
+                    <button id="lang-toggle" onclick="toggleLanguage()" class="font-mono text-xs tracking-widest uppercase py-1 px-2 hover:bg-paperMuted transition-colors focus:outline-none" aria-label="Switch Language">
+                        <span id="lang-en" class="font-semibold text-ink underline underline-offset-4">EN</span>
+                        <span class="text-slateLight mx-1">/</span>
+                        <span id="lang-tr" class="text-slateMuted">TR</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Sub-navigation Bar (Visible only below lg) -->
+            <div class="lg:hidden grid grid-cols-3 hairline-t text-center font-mono text-[11px] uppercase tracking-wider text-slateMuted bg-paper">
+                <a href="#practice" class="py-2.5 hairline-r hover:text-ink hover:bg-paperMuted" data-i18n="nav_practice">Practice</a>
+                <a href="#research" class="py-2.5 hairline-r hover:text-ink hover:bg-paperMuted" data-i18n="nav_research">Research</a>
+                <a href="#contact" class="py-2.5 hover:text-ink hover:bg-paperMuted" data-i18n="nav_contact">Contact</a>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="flex-grow">
+
+            <!-- 2. HERO SECTION (Editorial & Authoritative) -->
+            <section class="hairline-b">
+                <!-- Top Metadata Strip -->
+                <div class="grid grid-cols-12 hairline-b text-[11px] font-mono uppercase tracking-widest text-slateMuted">
+                    <div class="col-span-12 sm:col-span-6 lg:col-span-5 px-5 sm:px-8 py-3 sm:hairline-r flex items-center gap-2.5">
+                        <span class="w-1.5 h-1.5 bg-ink inline-block"></span>
+                        <span data-i18n="hero_index">R&D AND ENGINEERING PRACTICE</span>
+                    </div>
+                    <div class="hidden sm:flex sm:col-span-6 lg:col-span-7 px-8 py-3 items-center justify-between text-slateLight">
+                        <span data-i18n="hero_doc_ref">REF // RT-2026-SYS</span>
+                        <span>41°00'N 28°58'E — TÜRKİYE</span>
+                    </div>
+                </div>
+
+                <!-- Main Hero Body -->
+                <div class="grid grid-cols-12">
+                    <div class="col-span-12 lg:col-span-9 px-5 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-32 lg:hairline-r">
+                        <h1 class="text-4xl sm:text-6xl lg:text-[68px] font-semibold tracking-[-0.03em] text-ink leading-[1.04] mb-8 max-w-4xl">
+                            <span data-i18n="hero_title_1">Precision software and</span>
+                            <span class="font-serif italic font-normal" data-i18n="hero_title_serif">autonomous</span>
+                            <span data-i18n="hero_title_2">systems.</span>
+                        </h1>
+
+                        <p class="text-base sm:text-xl text-slateMuted leading-relaxed max-w-2xl mb-12 font-normal" data-i18n="hero_subtitle">
+                            Ramazanoğlu Tech is an independent engineering studio developing clinical navigation systems, real-time computer vision pipelines, and mission-critical software.
+                        </p>
+
+                        <!-- Action Block (Solid Rectangular CTA + One-Click Copy) -->
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-0 hairline-box inline-flex w-full sm:w-auto">
+                            <a href="mailto:yusuf@ramazanoglu.tech" class="bg-ink text-paper px-6 py-4 text-xs sm:text-sm font-mono uppercase tracking-wider hover:bg-neutral-800 transition-colors flex items-center justify-between sm:justify-start gap-4">
+                                <span data-i18n="hero_cta">Inquiries — yusuf@ramazanoglu.tech</span>
+                                <span>→</span>
+                            </a>
+                            <button onclick="copyEmail()" class="bg-paper text-ink px-5 py-4 text-xs font-mono uppercase tracking-wider hover:bg-paperMuted transition-colors hairline-t sm:hairline-t-0 sm:hairline-l flex items-center justify-center gap-2" title="Copy email address">
+                                <span data-i18n="btn_copy">Copy Address</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Architectural Spec Column -->
+                    <div class="col-span-12 lg:col-span-3 hairline-t lg:hairline-t-0 flex flex-col justify-between bg-paper">
+                        <div class="p-5 sm:p-8 hairline-b">
+                            <div class="font-mono text-[11px] uppercase tracking-widest text-slateLight mb-2" data-i18n="meta_focus_label">PRIMARY DISCIPLINES</div>
+                            <ul class="space-y-2 text-xs font-mono text-ink">
+                                <li>01 / SURGICAL NAVIGATION</li>
+                                <li>02 / VOLUMETRIC VISION</li>
+                                <li>03 / AUTONOMOUS CONTROL</li>
+                                <li>04 / ENTERPRISE SYSTEMS</li>
+                            </ul>
+                        </div>
+                        <div class="p-5 sm:p-8 hairline-b">
+                            <div class="font-mono text-[11px] uppercase tracking-widest text-slateLight mb-2" data-i18n="meta_standard_label">ENGINEERING STANDARD</div>
+                            <p class="text-xs text-slateMuted leading-relaxed" data-i18n="meta_standard_desc">
+                                Deterministic execution, sub-millimeter spatial accuracy, and zero-trust system architecture.
+                            </p>
+                        </div>
+                        <div class="p-5 sm:p-8">
+                            <div class="font-mono text-[11px] uppercase tracking-widest text-slateLight mb-1" data-i18n="meta_status_label">OPERATIONAL STATUS</div>
+                            <div class="flex items-center gap-2 font-mono text-xs text-ink">
+                                <span class="w-2 h-2 bg-intlOrange inline-block"></span>
+                                <span data-i18n="meta_status_val">ACTIVE R&D &amp; CONSULTING</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. CORE PRACTICE AREAS (3-Column Exposed Hairline Grid) -->
+            <section id="practice" class="hairline-b">
+                <!-- Section Header Bar -->
+                <div class="grid grid-cols-12 hairline-b bg-paperMuted/50">
+                    <div class="col-span-12 sm:col-span-4 px-5 sm:px-8 py-4 sm:hairline-r">
+                        <span class="font-mono text-xs uppercase tracking-widest text-ink font-medium" data-i18n="sec1_index">01 — CORE PRACTICE AREAS</span>
+                    </div>
+                    <div class="col-span-12 sm:col-span-8 px-5 sm:px-8 py-4 hairline-t sm:hairline-t-0">
+                        <span class="font-mono text-xs text-slateMuted" data-i18n="sec1_sub">APPLIED ENGINEERING &amp; SYSTEM ARCHITECTURE</span>
+                    </div>
+                </div>
+
+                <!-- 3-Column Hairline Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3">
+                    
+                    <!-- Column 01 -->
+                    <article class="p-6 sm:p-10 lg:p-12 hairline-b lg:hairline-b-0 lg:hairline-r flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between hairline-b pb-4 mb-8">
+                                <span class="font-mono text-xs font-medium text-ink">01</span>
+                                <span class="font-mono text-[11px] uppercase tracking-widest text-slateLight">CLINICAL &amp; SPATIAL</span>
+                            </div>
+                            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-ink mb-4" data-i18n="prac_1_title">
+                                Medical &amp; Surgical Systems
+                            </h2>
+                            <p class="text-sm sm:text-base text-slateMuted leading-relaxed mb-10" data-i18n="prac_1_desc">
+                                3D volumetric segmentation, real-time optical tracking, and surgical navigation interfaces for dental and clinical applications.
+                            </p>
+                        </div>
+                        <div class="pt-6 hairline-t font-mono text-[11px] text-slateMuted space-y-1.5">
+                            <div class="flex justify-between"><span>DATA FORMATS</span><span class="text-ink">DICOM / CBCT / NIfTI</span></div>
+                            <div class="flex justify-between"><span>SEGMENTATION</span><span class="text-ink">3D nnU-Net v2</span></div>
+                            <div class="flex justify-between"><span>REGISTRATION</span><span class="text-ink">Sub-Millimeter 6-DoF</span></div>
+                        </div>
+                    </article>
+
+                    <!-- Column 02 -->
+                    <article class="p-6 sm:p-10 lg:p-12 hairline-b lg:hairline-b-0 lg:hairline-r flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between hairline-b pb-4 mb-8">
+                                <span class="font-mono text-xs font-medium text-ink">02</span>
+                                <span class="font-mono text-[11px] uppercase tracking-widest text-slateLight">PERCEPTION &amp; INFERENCE</span>
+                            </div>
+                            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-ink mb-4" data-i18n="prac_2_title">
+                                Autonomous Perception &amp; Vision
+                            </h2>
+                            <p class="text-sm sm:text-base text-slateMuted leading-relaxed mb-10" data-i18n="prac_2_desc">
+                                Low-latency ROS2 architectures, multi-sensor fusion, and deep learning inference on edge hardware.
+                            </p>
+                        </div>
+                        <div class="pt-6 hairline-t font-mono text-[11px] text-slateMuted space-y-1.5">
+                            <div class="flex justify-between"><span>MIDDLEWARE</span><span class="text-ink">ROS2 Humble / C++</span></div>
+                            <div class="flex justify-between"><span>STATE ESTIMATION</span><span class="text-ink">Clothoid EKF / Sensor Fusion</span></div>
+                            <div class="flex justify-between"><span>COMPUTE</span><span class="text-ink">CUDA / TensorRT Edge</span></div>
+                        </div>
+                    </article>
+
+                    <!-- Column 03 -->
+                    <article class="p-6 sm:p-10 lg:p-12 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between hairline-b pb-4 mb-8">
+                                <span class="font-mono text-xs font-medium text-ink">03</span>
+                                <span class="font-mono text-[11px] uppercase tracking-widest text-slateLight">CORE INFRASTRUCTURE</span>
+                            </div>
+                            <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-ink mb-4" data-i18n="prac_3_title">
+                                Mission-Critical Software
+                            </h2>
+                            <p class="text-sm sm:text-base text-slateMuted leading-relaxed mb-10" data-i18n="prac_3_desc">
+                                High-reliability desktop telemetry, ground control stations, and encrypted enterprise software architecture.
+                            </p>
+                        </div>
+                        <div class="pt-6 hairline-t font-mono text-[11px] text-slateMuted space-y-1.5">
+                            <div class="flex justify-between"><span>PLATFORMS</span><span class="text-ink">Native C# / .NET / Python</span></div>
+                            <div class="flex justify-between"><span>PROTECTION</span><span class="text-ink">HWID &amp; AES-256 Persistence</span></div>
+                            <div class="flex justify-between"><span>CLOUD</span><span class="text-ink">AWS / Distributed Edge</span></div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- 4. SELECTED R&D & TECHNICAL FOCUS (Tabular Editorial List) -->
+            <section id="research" class="hairline-b">
+                <!-- Section Header Bar -->
+                <div class="grid grid-cols-12 hairline-b bg-paperMuted/50">
+                    <div class="col-span-12 sm:col-span-4 px-5 sm:px-8 py-4 sm:hairline-r">
+                        <span class="font-mono text-xs uppercase tracking-widest text-ink font-medium" data-i18n="sec2_index">02 — SELECTED R&D &amp; TECHNICAL FOCUS</span>
+                    </div>
+                    <div class="col-span-12 sm:col-span-8 px-5 sm:px-8 py-4 hairline-t sm:hairline-t-0 flex justify-between items-center">
+                        <span class="font-mono text-xs text-slateMuted" data-i18n="sec2_sub">SYSTEM ARCHITECTURES &amp; RESEARCH PROGRAMS</span>
+                        <span class="hidden md:inline-block font-mono text-[11px] text-slateLight">INDEX // 01—03</span>
+                    </div>
+                </div>
+
+                <!-- Table Column Headers (Desktop) -->
+                <div class="hidden lg:grid grid-cols-12 hairline-b px-8 py-3 font-mono text-[11px] uppercase tracking-widest text-slateLight">
+                    <div class="col-span-1">NO.</div>
+                    <div class="col-span-4" data-i18n="tbl_col_system">PROGRAM / SYSTEM</div>
+                    <div class="col-span-5" data-i18n="tbl_col_scope">TECHNICAL SCOPE &amp; ARCHITECTURE</div>
+                    <div class="col-span-2 text-right" data-i18n="tbl_col_domain">DOMAIN</div>
+                </div>
+
+                <!-- Row 01 -->
+                <div class="grid grid-cols-12 px-5 sm:px-8 py-8 sm:py-10 hairline-b row-hover items-start">
+                    <div class="col-span-2 lg:col-span-1 font-mono text-xs text-slateMuted pt-1">01</div>
+                    <div class="col-span-10 lg:col-span-4 pr-4 mb-3 lg:mb-0">
+                        <h3 class="text-lg sm:text-xl font-semibold text-ink tracking-tight" data-i18n="rd_1_title">
+                            Volumetric Dental Navigation
+                        </h3>
+                        <span class="font-mono text-[11px] text-slateLight block mt-1" data-i18n="rd_1_meta">TÜBİTAK 2242 Research Foundation</span>
+                    </div>
+                    <div class="col-span-12 lg:col-span-5 text-sm sm:text-base text-slateMuted leading-relaxed mb-4 lg:mb-0" data-i18n="rd_1_desc">
+                        Real-time 3D CBCT segmentation &amp; dynamic surgical guidance. Automated extraction of mandibular anatomy, inferior alveolar nerve canals, and spatial instrument tracking.
+                    </div>
+                    <div class="col-span-12 lg:col-span-2 lg:text-right font-mono text-xs text-ink pt-1">
+                        <span class="inline-block px-2.5 py-1 hairline-box bg-paper">MEDTECH / XR</span>
+                    </div>
+                </div>
+
+                <!-- Row 02 -->
+                <div class="grid grid-cols-12 px-5 sm:px-8 py-8 sm:py-10 hairline-b row-hover items-start">
+                    <div class="col-span-2 lg:col-span-1 font-mono text-xs text-slateMuted pt-1">02</div>
+                    <div class="col-span-10 lg:col-span-4 pr-4 mb-3 lg:mb-0">
+                        <h3 class="text-lg sm:text-xl font-semibold text-ink tracking-tight" data-i18n="rd_2_title">
+                            Autonomous Surface &amp; Ground Systems
+                        </h3>
+                        <span class="font-mono text-[11px] text-slateLight block mt-1">ROS2 Humble · C++ / Python</span>
+                    </div>
+                    <div class="col-span-12 lg:col-span-5 text-sm sm:text-base text-slateMuted leading-relaxed mb-4 lg:mb-0" data-i18n="rd_2_desc">
+                        Sensor fusion, kinematics, and zero-latency perception pipelines. Clothoid geometry Extended Kalman Filter (EKF) trajectory estimation and multi-modal obstacle avoidance.
+                    </div>
+                    <div class="col-span-12 lg:col-span-2 lg:text-right font-mono text-xs text-ink pt-1">
+                        <span class="inline-block px-2.5 py-1 hairline-box bg-paper">ROBOTICS / AI</span>
+                    </div>
+                </div>
+
+                <!-- Row 03 -->
+                <div class="grid grid-cols-12 px-5 sm:px-8 py-8 sm:py-10 row-hover items-start">
+                    <div class="col-span-2 lg:col-span-1 font-mono text-xs text-slateMuted pt-1">03</div>
+                    <div class="col-span-10 lg:col-span-4 pr-4 mb-3 lg:mb-0">
+                        <h3 class="text-lg sm:text-xl font-semibold text-ink tracking-tight" data-i18n="rd_3_title">
+                            Enterprise &amp; Telemetry Systems
+                        </h3>
+                        <span class="font-mono text-[11px] text-slateLight block mt-1">Zero-Trust · Native Desktop &amp; Cloud</span>
+                    </div>
+                    <div class="col-span-12 lg:col-span-5 text-sm sm:text-base text-slateMuted leading-relaxed mb-4 lg:mb-0" data-i18n="rd_3_desc">
+                        Native C++ / C# control interfaces and distributed cloud architectures. Hardware-bound cryptographic licensing, real-time mission control stations, and algorithmic execution.
+                    </div>
+                    <div class="col-span-12 lg:col-span-2 lg:text-right font-mono text-xs text-ink pt-1">
+                        <span class="inline-block px-2.5 py-1 hairline-box bg-paper">SYSTEMS / CLOUD</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TECHNICAL SPECIFICATIONS & METHODOLOGY BLOCK -->
+            <section id="architecture" class="hairline-b">
+                <div class="grid grid-cols-12">
+                    <div class="col-span-12 lg:col-span-5 p-6 sm:p-10 lg:p-12 hairline-b lg:hairline-b-0 lg:hairline-r flex flex-col justify-between">
+                        <div>
+                            <div class="font-mono text-xs uppercase tracking-widest text-slateLight mb-4" data-i18n="sec3_index">03 — ARCHITECTURAL PRINCIPLES</div>
+                            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-ink leading-snug mb-6" data-i18n="phil_heading">
+                                Built for environments where software failure is not an option.
+                            </h2>
+                        </div>
+                        <p class="text-sm sm:text-base text-slateMuted leading-relaxed" data-i18n="phil_body">
+                            We reject superficial complexity in favor of mathematical rigor, clean systems programming, and verifiable clinical and operational reliability.
+                        </p>
+                    </div>
+
+                    <div class="col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-2">
+                        <div class="p-6 sm:p-10 hairline-b sm:hairline-r">
+                            <div class="font-mono text-[11px] uppercase tracking-widest text-slateLight mb-2" data-i18n="spec_1_title">SPATIAL TOLERANCE</div>
+                            <div class="text-3xl font-semibold tracking-tight text-ink font-mono mb-2">&lt; 1.0 mm</div>
+                            <p class="text-xs sm:text-sm text-slateMuted" data-i18n="spec_1_desc">Volumetric registration and optical instrument tracking accuracy in clinical navigation.</p>
+                        </div>
+                        <div class="p-6 sm:p-10 hairline-b">
+                            <div class="font-mono text-[11px] uppercase tracking-widest text-slateLight mb-2" data-i18n="spec_2_title">PERCEPTION LATENCY</div>
+                            <div class="text-3xl font-semibold tracking-tight text-ink font-mono mb-2">&lt; 10 ms</div>
+                            <p class="text-xs sm:text-sm text-slateMuted" data-i18n="spec_2_desc">End-to-end frame processing, sensor fusion, and real-time telemetry dispatch.</p>
+                        </div>
+                        <div class="p-6 sm:p-10 sm:col-span-2">
+                            <div class="font-mono text-[11px] uppercase tracking-widest text-slateLight mb-4" data-i18n="spec_3_title">PRODUCTION STACK &amp; TOOLING</div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-3 gap-x-6 font-mono text-xs text-ink">
+                                <div>• C++ / C# (.NET)</div>
+                                <div>• Python / PyTorch</div>
+                                <div>• 3D nnU-Net v2</div>
+                                <div>• ROS2 Humble</div>
+                                <div>• VTK / ITK / Slicer</div>
+                                <div>• Unity 3D / OpenXR</div>
+                                <div>• CUDA / TensorRT</div>
+                                <div>• AWS Cloud</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- 5. FOOTER & DIRECT CONTACT (2-Column Architectural Block) -->
+        <footer id="contact" class="bg-paper">
+            <div class="grid grid-cols-12 hairline-b">
+                
+                <!-- Left Column: Direct Contact -->
+                <div class="col-span-12 lg:col-span-7 p-6 sm:p-10 lg:p-12 hairline-b lg:hairline-b-0 lg:hairline-r">
+                    <div class="font-mono text-xs uppercase tracking-widest text-slateLight mb-3" data-i18n="contact_eyebrow">04 — DIRECT COMMUNICATION</div>
+                    <h2 class="text-2xl sm:text-4xl font-semibold tracking-tight text-ink mb-4" data-i18n="contact_heading">
+                        Inquiries &amp; Technical Partnerships
+                    </h2>
+                    <p class="text-sm sm:text-base text-slateMuted max-w-xl mb-8 leading-relaxed" data-i18n="contact_desc">
+                        For R&amp;D collaborations, clinical navigation inquiries, hardware sponsorships, or enterprise software consulting, reach out directly via electronic mail.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
+                        <a href="mailto:yusuf@ramazanoglu.tech" class="font-mono text-base sm:text-xl font-medium text-ink underline underline-offset-8 hover:text-intlOrange transition-colors">
+                            yusuf@ramazanoglu.tech
+                        </a>
+                        <button onclick="copyEmail()" class="self-start sm:self-auto px-4 py-2 hairline-box bg-paper hover:bg-paperMuted font-mono text-xs uppercase tracking-wider text-ink transition-colors" data-i18n="btn_copy_short">
+                            Copy Email
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Corporate Metadata -->
+                <div class="col-span-12 lg:col-span-5 p-6 sm:p-10 lg:p-12 flex flex-col justify-between bg-paperMuted/30">
+                    <div class="space-y-4 font-mono text-xs">
+                        <div class="grid grid-cols-3 py-2 hairline-b">
+                            <span class="text-slateLight" data-i18n="foot_entity_label">ENTITY</span>
+                            <span class="col-span-2 text-ink font-medium">Ramazanoğlu Tech</span>
+                        </div>
+                        <div class="grid grid-cols-3 py-2 hairline-b">
+                            <span class="text-slateLight" data-i18n="foot_practice_label">PRACTICE</span>
+                            <span class="col-span-2 text-ink" data-i18n="foot_practice_val">Independent Engineering Studio</span>
+                        </div>
+                        <div class="grid grid-cols-3 py-2 hairline-b">
+                            <span class="text-slateLight" data-i18n="foot_domain_label">DOMAIN</span>
+                            <span class="col-span-2 text-ink">ramazanoglu.tech</span>
+                        </div>
+                        <div class="grid grid-cols-3 py-2">
+                            <span class="text-slateLight" data-i18n="foot_loc_label">LOCATION</span>
+                            <span class="col-span-2 text-ink" data-i18n="foot_loc_val">Türkiye · UTC+3</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 mt-8 hairline-t flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-[11px] text-slateLight">
+                        <span data-i18n="foot_rights">© 2026 Ramazanoğlu Tech. All rights reserved.</span>
+                        <span>SWISS GRID REV. 2.4</span>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Instantaneous Bilingual Switcher & Clipboard Logic -->
+    <script>
+        const i18n = {
+            en: {
+                nav_practice: "Practice",
+                nav_research: "Research",
+                nav_architecture: "Specifications",
+                nav_contact: "Contact",
+                hero_index: "R&D AND ENGINEERING PRACTICE",
+                hero_doc_ref: "REF // RT-2026-SYS",
+                hero_title_1: "Precision software and",
+                hero_title_serif: "autonomous",
+                hero_title_2: "systems.",
+                hero_subtitle: "Ramazanoğlu Tech is an independent engineering studio developing clinical navigation systems, real-time computer vision pipelines, and mission-critical software.",
+                hero_cta: "Inquiries — yusuf@ramazanoglu.tech",
+                btn_copy: "Copy Address",
+                btn_copy_short: "Copy Email",
+                meta_focus_label: "PRIMARY DISCIPLINES",
+                meta_standard_label: "ENGINEERING STANDARD",
+                meta_standard_desc: "Deterministic execution, sub-millimeter spatial accuracy, and zero-trust system architecture.",
+                meta_status_label: "OPERATIONAL STATUS",
+                meta_status_val: "ACTIVE R&D & CONSULTING",
+                sec1_index: "01 — CORE PRACTICE AREAS",
+                sec1_sub: "APPLIED ENGINEERING & SYSTEM ARCHITECTURE",
+                prac_1_title: "Medical & Surgical Systems",
+                prac_1_desc: "3D volumetric segmentation, real-time optical tracking, and surgical navigation interfaces for dental and clinical applications.",
+                prac_2_title: "Autonomous Perception & Vision",
+                prac_2_desc: "Low-latency ROS2 architectures, multi-sensor fusion, and deep learning inference on edge hardware.",
+                prac_3_title: "Mission-Critical Software",
+                prac_3_desc: "High-reliability desktop telemetry, ground control stations, and encrypted enterprise software architecture.",
+                sec2_index: "02 — SELECTED R&D & TECHNICAL FOCUS",
+                sec2_sub: "SYSTEM ARCHITECTURES & RESEARCH PROGRAMS",
+                tbl_col_system: "PROGRAM / SYSTEM",
+                tbl_col_scope: "TECHNICAL SCOPE & ARCHITECTURE",
+                tbl_col_domain: "DOMAIN",
+                rd_1_title: "Volumetric Dental Navigation",
+                rd_1_meta: "TÜBİTAK 2242 Research Foundation",
+                rd_1_desc: "Real-time 3D CBCT segmentation & dynamic surgical guidance. Automated extraction of mandibular anatomy, inferior alveolar nerve canals, and spatial instrument tracking.",
+                rd_2_title: "Autonomous Surface & Ground Systems",
+                rd_2_desc: "Sensor fusion, kinematics, and zero-latency perception pipelines. Clothoid geometry Extended Kalman Filter (EKF) trajectory estimation and multi-modal obstacle avoidance.",
+                rd_3_title: "Enterprise & Telemetry Systems",
+                rd_3_desc: "Native C++ / C# control interfaces and distributed cloud architectures. Hardware-bound cryptographic licensing, real-time mission control stations, and algorithmic execution.",
+                sec3_index: "03 — ARCHITECTURAL PRINCIPLES",
+                phil_heading: "Built for environments where software failure is not an option.",
+                phil_body: "We reject superficial complexity in favor of mathematical rigor, clean systems programming, and verifiable clinical and operational reliability.",
+                spec_1_title: "SPATIAL TOLERANCE",
+                spec_1_desc: "Volumetric registration and optical instrument tracking accuracy in clinical navigation.",
+                spec_2_title: "PERCEPTION LATENCY",
+                spec_2_desc: "End-to-end frame processing, sensor fusion, and real-time telemetry dispatch.",
+                spec_3_title: "PRODUCTION STACK & TOOLING",
+                contact_eyebrow: "04 — DIRECT COMMUNICATION",
+                contact_heading: "Inquiries & Technical Partnerships",
+                contact_desc: "For R&D collaborations, clinical navigation inquiries, hardware sponsorships, or enterprise software consulting, reach out directly via electronic mail.",
+                foot_entity_label: "ENTITY",
+                foot_practice_label: "PRACTICE",
+                foot_practice_val: "Independent Engineering Studio",
+                foot_domain_label: "DOMAIN",
+                foot_loc_label: "LOCATION",
+                foot_loc_val: "Türkiye · UTC+3",
+                foot_rights: "© 2026 Ramazanoğlu Tech. All rights reserved.",
+                toast_msg: "COPIED: YUSUF@RAMAZANOGLU.TECH"
+            },
+            tr: {
+                nav_practice: "Uzmanlık",
+                nav_research: "Araştırma",
+                nav_architecture: "Spesifikasyonlar",
+                nav_contact: "İletişim",
+                hero_index: "AR-GE VE MÜHENDİSLİK PRATİĞİ",
+                hero_doc_ref: "REF // RT-2026-SIS",
+                hero_title_1: "Hassas yazılım mimarileri ve",
+                hero_title_serif: "otonom",
+                hero_title_2: "sistemler.",
+                hero_subtitle: "Ramazanoğlu Tech; klinik navigasyon sistemleri, gerçek zamanlı bilgisayarlı görü hatları ve kritik görev yazılımları geliştiren bağımsız bir mühendislik stüdyosudur.",
+                hero_cta: "İletişim — yusuf@ramazanoglu.tech",
+                btn_copy: "Adresi Kopyala",
+                btn_copy_short: "Kopyala",
+                meta_focus_label: "TEMEL DİSİPLİNLER",
+                meta_standard_label: "MÜHENDİSLİK STANDARDI",
+                meta_standard_desc: "Deterministik çalışma, milimetre altı uzamsal doğruluk ve sıfır-güven (zero-trust) sistem mimarisi.",
+                meta_status_label: "OPERASYONEL DURUM",
+                meta_status_val: "AKTİF AR-GE & DANIŞMANLIK",
+                sec1_index: "01 — TEMEL UZMANLIK ALANLARI",
+                sec1_sub: "UYGULAMALI MÜHENDİSLİK VE SİSTEM MİMARİSİ",
+                prac_1_title: "Medikal ve Cerrahi Sistemler",
+                prac_1_desc: "Dental ve klinik uygulamalar için 3B hacimsel segmentasyon, gerçek zamanlı optik takip ve cerrahi navigasyon arayüzleri.",
+                prac_2_title: "Otonom Algılama ve Görü",
+                prac_2_desc: "Düşük gecikmeli ROS2 mimarileri, çoklu sensör füzyonu ve uç (edge) donanımlar üzerinde derin öğrenme çıkarımı.",
+                prac_3_title: "Kritik Görev Yazılımları",
+                prac_3_desc: "Yüksek güvenilirlikli masaüstü telemetri, yer kontrol istasyonları ve şifreli kurumsal yazılım mimarileri.",
+                sec2_index: "02 — SEÇİLİ AR-GE VE TEKNİK ODAK",
+                sec2_sub: "SİSTEM MİMARİLERİ VE ARAŞTIRMA PROGRAMLARI",
+                tbl_col_system: "PROGRAM / SİSTEM",
+                tbl_col_scope: "TEKNİK KAPSAM VE MİMARİ",
+                tbl_col_domain: "ALAN",
+                rd_1_title: "Hacimsel Dental Navigasyon",
+                rd_1_meta: "TÜBİTAK 2242 Araştırma Altyapısı",
+                rd_1_desc: "Gerçek zamanlı 3B CBCT segmentasyonu ve dinamik cerrahi rehberlik. Mandibular anatomi, sinir kanalları ayrıştırması ve uzamsal enstrüman takibi.",
+                rd_2_title: "Otonom Su Üstü ve Kara Sistemleri",
+                rd_2_desc: "Sensör füzyonu, kinematik ve sıfır gecikmeli algılama hatları. Klotoid geometrili Genişletilmiş Kalman Filtresi (EKF) yörünge tahmini ve engel sakınma.",
+                rd_3_title: "Kurumsal ve Telemetri Sistemleri",
+                rd_3_desc: "Yerel C++ / C# kontrol arayüzleri ve dağıtık bulut mimarileri. Donanım kilidi tabanlı kriptografik lisanslama, gerçek zamanlı görev kontrol ve algoritmik işlem.",
+                sec3_index: "03 — MİMARİ İLKELER",
+                phil_heading: "Yazılım hatasının kabul edilemez olduğu ortamlar için tasarlandı.",
+                phil_body: "Yüzeysel karmaşıklığı reddediyor; matematiksel kesinlik, yalın sistem programlama ve doğrulanabilir klinik/operasyonel güvenilirlik üzerine inşa ediyoruz.",
+                spec_1_title: "UZAMSAL TOLERANS",
+                spec_1_desc: "Klinik navigasyonda hacimsel çakıştırma ve optik el aleti takip hassasiyeti.",
+                spec_2_title: "ALGILAMA GECİKMESİ",
+                spec_2_desc: "Uçtan uca kare işleme, sensör füzyonu ve gerçek zamanlı telemetri aktarımı.",
+                spec_3_title: "ÜRETİM TEKNOLOJİ YIĞINI",
+                contact_eyebrow: "04 — DOĞRUDAN İLETİŞİM",
+                contact_heading: "Kurumsal Talepler ve Teknik İş Birlikleri",
+                contact_desc: "Ar-Ge iş birlikleri, klinik navigasyon araştırmaları, donanım sponsorlukları veya kurumsal yazılım danışmanlığı için doğrudan e-posta yoluyla iletişime geçebilirsiniz.",
+                foot_entity_label: "KURULUŞ",
+                foot_practice_label: "YAPI",
+                foot_practice_val: "Bağımsız Mühendislik Stüdyosu",
+                foot_domain_label: "ALAN ADI",
+                foot_loc_label: "KONUM",
+                foot_loc_val: "Türkiye · UTC+3",
+                foot_rights: "© 2026 Ramazanoğlu Tech. Tüm hakları saklıdır.",
+                toast_msg: "KOPYALANDI: YUSUF@RAMAZANOGLU.TECH"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'tr' : 'en';
+            document.documentElement.lang = currentLang;
+
+            const enBtn = document.getElementById('lang-en');
+            const trBtn = document.getElementById('lang-tr');
+
+            if (currentLang === 'en') {
+                enBtn.className = 'font-semibold text-ink underline underline-offset-4';
+                trBtn.className = 'text-slateMuted';
+            } else {
+                trBtn.className = 'font-semibold text-ink underline underline-offset-4';
+                enBtn.className = 'text-slateMuted';
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[currentLang][key]) {
+                    el.textContent = i18n[currentLang][key];
+                }
+            });
+        }
+
+        function copyEmail() {
+            const email = 'yusuf@ramazanoglu.tech';
+            const textarea = document.createElement('textarea');
+            textarea.value = email;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            toastText.textContent = i18n[currentLang].toast_msg;
+            toast.classList.remove('translate-y-16', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-16', 'opacity-0');
+            }, 2600);
+        }
+    </script>
+</body>
+</html>
