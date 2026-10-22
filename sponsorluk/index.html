@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramazanoğlu Tech — Ar-Ge Proje Vitrini & Sponsorluk Dosyası</title>
+    <meta name="description" content="Ramazanoğlu Tech medikal yazılımlar ve gerçek zamanlı otonom sistemler canlı proje vitrini ve kuluçka dönemi Ar-Ge sponsorluk/hibe dosyası.">
+
+    <!-- Google Fonts: Inter, Instrument Serif, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        paper: '#FBFBF9',
+                        paperMuted: '#F3F3EF',
+                        ink: '#111111',
+                        slateMuted: '#555555',
+                        slateLight: '#888884',
+                        hairline: '#E2E2DF',
+                        intlOrange: '#D9381E'
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            border-radius: 0px !important;
+        }
+        body {
+            background-color: #FBFBF9;
+            color: #111111;
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .hairline-t { border-top: 1px solid #E2E2DF; }
+        .hairline-b { border-bottom: 1px solid #E2E2DF; }
+        .hairline-l { border-left: 1px solid #E2E2DF; }
+        .hairline-r { border-right: 1px solid #E2E2DF; }
+        .hairline-box { border: 1px solid #E2E2DF; }
+        .row-hover { transition: background-color 0.15s ease; }
+        .row-hover:hover { background-color: #F3F3EF; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FBFBF9; border-left: 1px solid #E2E2DF; }
+        ::-webkit-scrollbar-thumb { background: #CCCCCC; }
+        ::-webkit-scrollbar-thumb:hover { background: #111111; }
+    </style>
+</head>
+<body class="font-sans selection:bg-ink selection:text-paper min-h-screen flex flex-col">
+
+    <!-- Clipboard Notification Bar -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition-all duration-200 pointer-events-none">
+        <div class="bg-ink text-paper px-5 py-3.5 hairline-box flex items-center gap-3 shadow-sm">
+            <span class="w-2 h-2 bg-intlOrange inline-block"></span>
+            <span id="toast-text" class="font-mono text-xs uppercase tracking-wider">KOPYALANDI: PARTNERS@RAMAZANOGLU.TECH</span>
+        </div>
+    </div>
+
+    <!-- Outer Architectural Frame -->
+    <div class="max-w-[1360px] w-full mx-auto hairline-l hairline-r flex-grow flex flex-col">
+
+        <!-- 1. TOP ARCHITECTURAL HEADER -->
+        <header class="sticky top-0 z-40 bg-paper/95 backdrop-blur-sm hairline-b">
+            <div class="grid grid-cols-12 items-center h-16 sm:h-20">
+                <div class="col-span-7 sm:col-span-5 lg:col-span-4 px-5 sm:px-8 h-full flex items-center hairline-r">
+                    <a href="/" class="inline-flex items-baseline gap-2 focus:outline-none group">
+                        <span class="text-sm sm:text-base font-bold tracking-tight uppercase text-ink">RAMAZANOĞLU TECH</span>
+                        <span class="w-1.5 h-1.5 bg-intlOrange inline-block opacity-90 group-hover:scale-125 transition-transform"></span>
+                    </a>
+                </div>
+
+                <nav class="hidden lg:flex lg:col-span-6 h-full items-center px-8 gap-8 text-xs font-mono uppercase tracking-widest text-slateMuted hairline-r">
+                    <a href="#demos" class="hover:text-ink transition-colors">01 / Canlı Sistem Vitrini</a>
+                    <a href="#projeler" class="hover:text-ink transition-colors">02 / Ar-Ge Odaklarımız</a>
+                    <a href="#fonlama" class="hover:text-ink transition-colors">03 / Hibe & Sponsorluk</a>
+                    <a href="#iletisim" class="hover:text-ink transition-colors">04 / Doğrudan İletişim</a>
+                </nav>
+
+                <div class="col-span-5 sm:col-span-7 lg:col-span-2 h-full flex items-center justify-end px-5 sm:px-8 gap-4">
+                    <a href="/" class="font-mono text-[11px] uppercase tracking-wider text-slateMuted hover:text-ink underline underline-offset-4">← Ana Sayfa</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. HERO / EXECUTIVE BRIEFING -->
+        <section class="hairline-b">
+            <div class="grid grid-cols-12">
+                <div class="col-span-12 lg:col-span-8 p-6 sm:p-12 lg:p-16 hairline-b lg:hairline-b-0 lg:hairline-r">
+                    <div class="inline-flex items-center gap-2.5 mb-6">
+                        <span class="w-2 h-2 bg-intlOrange inline-block"></span>
+                        <span class="font-mono text-xs uppercase tracking-widest text-slateMuted">KURUMSAL PROJE VİTRİNİ & AR-GE HİBE BRİFİNGİ // 2026</span>
+                    </div>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.06] tracking-tight text-ink mb-6">
+                        Medikal Yazılımlar ve Gerçek Zamanlı Otonom Sistemler.
+                    </h1>
+                    <p class="text-base sm:text-lg text-slateMuted leading-relaxed max-w-2xl mb-8">
+                        Ramazanoğlu Tech; ulusal ve uluslararası yarışmalarda dereceleri ve başarıları bulunan bir mühendislik ekibi tarafından yürütülen bağımsız bir Ar-Ge kuluçkasıdır. Geliştirdiğimiz <strong>3B tıbbi görüntüleme / klinik navigasyon yazılımları</strong> ve <strong>düşük gecikmeli otonom algılama sistemlerinin</strong> prototip doğrulama ve ölçeklendirme süreçleri için kurumsal <strong>nakdi hibe ve Ar-Ge sponsorluğu</strong> iş birlikleri oluşturuyoruz.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="#fonlama" class="bg-ink text-paper px-6 py-3.5 font-mono text-xs uppercase tracking-widest hover:bg-intlOrange transition-colors">
+                            Sponsorluk & Hibe Detayları →
+                        </a>
+                        <a href="#demos" class="hairline-box bg-paper px-6 py-3.5 font-mono text-xs uppercase tracking-widest text-ink hover:bg-paperMuted transition-colors">
+                            Canlı Teknik Simülasyonu İncele
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Key Credentials Sidebar -->
+                <div class="col-span-12 lg:col-span-4 flex flex-col justify-between bg-paperMuted/50">
+                    <div class="p-6 sm:p-8 hairline-b">
+                        <div class="font-mono text-[11px] uppercase tracking-widest text-slateLight mb-1">YAPI & AŞAMA</div>
+                        <div class="text-lg font-semibold text-ink">Şirketleşme Öncesi Ar-Ge Kuluçkası</div>
+                        <p class="text-xs text-slateMuted mt-1 leading-relaxed">Aktif prototip geliştirme ve saha/laboratuvar doğrulama fazı.</p>
+                    </div>
+                    <div class="p-6 sm:p-8 hairline-b">
+                        <div class="font-mono text-[11px] uppercase tracking-widest text-slateLight mb-1">MÜHENDİSLİK GEÇMİŞİ</div>
+                        <div class="text-lg font-semibold text-ink">Ulusal & Uluslararası Dereceler</div>
+                        <p class="text-xs text-slateMuted mt-1 leading-relaxed">Yüksek hassasiyetli görüntü işleme, medikal yazılımlar ve otonom kontrol yarışmalarında kanıtlanmış ekip başarısı.</p>
+                    </div>
+                    <div class="p-6 sm:p-8">
+                        <div class="font-mono text-[11px] uppercase tracking-widest text-intlOrange font-semibold mb-1">TALEP EDİLEN DESTEK MODELİ</div>
+                        <div class="text-lg font-semibold text-ink">Nakdi Ar-Ge Sponsorluğu / Hibe Fonu</div>
+                        <p class="text-xs text-slateMuted mt-1 leading-relaxed">Donanım tedariki, GPU/hesaplama altyapısı ve prototip test bütçesi için doğrudan finansal Ar-Ge desteği.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. INTERACTIVE LIVE R&D SIMULATIONS (NO SLIDES NEEDED) -->
+        <section id="demos" class="hairline-b">
+            <div class="p-6 sm:p-10 hairline-b flex flex-col sm:flex-row sm:items-end justify-between gap-4 bg-paper">
+                <div>
+                    <div class="font-mono text-xs uppercase tracking-widest text-intlOrange mb-2">01 — CANLI TEKNOLOJİ VİTRİNİ (İNTERAKTİF)</div>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-ink">Üzerinde Çalıştığımız İki Çekirdek Sistem</h2>
+                </div>
+                <p class="font-mono text-xs text-slateMuted max-w-md">
+                    Aşağıdaki paneller, kuluçkamız bünyesinde geliştirdiğimiz medikal navigasyon ve otonom algılama mimarilerinin çalışma prensibini canlı olarak simüle etmektedir.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-12">
+                <!-- SYSTEM 1: 3D MEDICAL IMAGING & CLINICAL NAVIGATION -->
+                <div class="col-span-12 lg:col-span-6 p-6 sm:p-8 hairline-b lg:hairline-b-0 lg:hairline-r flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs px-2.5 py-1 bg-ink text-paper uppercase tracking-wider">SİSTEM 01 // MEDİKAL YAZILIM</span>
+                            <span id="med-status" class="font-mono text-xs text-emerald-700 font-semibold">● OPTİK TAKİP AKTİF (60 FPS)</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-semibold text-ink mb-2">3B Tıbbi Görüntüleme ve Klinik Navigasyon</h3>
+                        <p class="text-sm text-slateMuted leading-relaxed mb-5">
+                            Tomografi (BT/CBCT) ve MR verilerinden 3 boyutlu anatomik model çıkaran, operasyon sırasında cerrahi el aletinin konumunu milimetrenin altında hassasiyetle takip ederek kritik anatomik yapılara yaklaşıldığında gerçek zamanlı güvenlik uyarısı üreten yerli medikal yazılım mimarisi.
+                        </p>
+
+                        <!-- Interactive Canvas Box -->
+                        <div class="hairline-box bg-[#0D0E11] text-paper p-4 mb-4">
+                            <div class="flex items-center justify-between border-b border-white/15 pb-2.5 mb-3 font-mono text-[11px]">
+                                <span class="text-white/80">MODÜL: RT-MEDNAV // 3B VOLUMETRİK TAKİP</span>
+                                <span id="med-coords" class="text-[#D9381E]">RMS: 0.36 mm | GÜVENLİK KORİDORU: AÇIK</span>
+                            </div>
+                            <canvas id="medCanvas" width="560" height="270" class="w-full h-[230px] sm:h-[260px] block cursor-crosshair"></canvas>
+                            <div class="grid grid-cols-3 gap-2 pt-3 mt-3 border-t border-white/15 font-mono text-[11px]">
+                                <div>
+                                    <span class="text-white/50 block">CERRAHİ UÇ MESAFESİ</span>
+                                    <span id="med-dist" class="text-white font-semibold">3.42 mm (GÜVENLİ)</span>
+                                </div>
+                                <div>
+                                    <span class="text-white/50 block">UZAMSAL HASSASİYET</span>
+                                    <span class="text-white font-semibold">&lt; 0.45 mm</span>
+                                </div>
+                                <div>
+                                    <span class="text-white/50 block">ETKİLEŞİM</span>
+                                    <span class="text-white/80">Fareyi ekran üzerinde gezdirin</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <button onclick="toggleMedLayer()" class="hairline-box py-2.5 px-3 font-mono text-xs uppercase tracking-wider hover:bg-paperMuted text-left flex items-center justify-between">
+                            <span>Güvenlik Eşiği (2.0 mm)</span>
+                            <span id="med-btn-label" class="text-intlOrange font-semibold">AKTİF</span>
+                        </button>
+                        <div class="hairline-box py-2.5 px-3 font-mono text-xs text-slateMuted flex items-center justify-between">
+                            <span>Mimari:</span>
+                            <span class="text-ink font-semibold">C++20 / 3B Rekonstrüksiyon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SYSTEM 2: REAL-TIME AUTONOMOUS PERCEPTION -->
+                <div class="col-span-12 lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="font-mono text-xs px-2.5 py-1 bg-ink text-paper uppercase tracking-wider">SİSTEM 02 // OTONOM SİSTEMLER</span>
+                            <span class="font-mono text-xs text-emerald-700 font-semibold">● GECİKME: 6.8 ms</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-semibold text-ink mb-2">Gerçek Zamanlı Otonom Algılama ve Karar Hattı</h3>
+                        <p class="text-sm text-slateMuted leading-relaxed mb-5">
+                            Kamera ve sensör verilerini milisaniyeler içinde işleyerek dinamik nesne tespiti, yörünge tahmini ve otonom yönlendirme kararları üreten yüksek güvenilirlikli bilgisayarlı görü (Computer Vision) ve kontrol yazılımı.
+                        </p>
+
+                        <!-- Interactive Autonomous Canvas Box -->
+                        <div class="hairline-box bg-[#0D0E11] text-paper p-4 mb-4">
+                            <div class="flex items-center justify-between border-b border-white/15 pb-2.5 mb-3 font-mono text-[11px]">
+                                <span class="text-white/80">MODÜL: RT-VISION // GERÇEK ZAMANLI ALGILAMA</span>
+                                <span id="auto-telemetry" class="text-emerald-400">HEDEF TAKİBİ: 4 NESNE | 145 FPS</span>
+                            </div>
+                            <canvas id="autoCanvas" width="560" height="270" class="w-full h-[230px] sm:h-[260px] block cursor-pointer"></canvas>
+                            <div class="grid grid-cols-3 gap-2 pt-3 mt-3 border-t border-white/15 font-mono text-[11px]">
+                                <div>
+                                    <span class="text-white/50 block">KARAR HATTI GECİKMESİ</span>
+                                    <span class="text-white font-semibold">6.8 ms (Gerçek Zamanlı)</span>
+                                </div>
+                                <div>
+                                    <span class="text-white/50 block">SENSÖR FÜZYONU</span>
+                                    <span class="text-white font-semibold">Optik + Telemetri</span>
+                                </div>
+                                <div>
+                                    <span class="text-white/50 block">ETKİLEŞİM</span>
+                                    <span class="text-white/80">Yeni hedef için ekrana tıklayın</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <button onclick="toggleAutoVectors()" class="hairline-box py-2.5 px-3 font-mono text-xs uppercase tracking-wider hover:bg-paperMuted text-left flex items-center justify-between">
+                            <span>Yörünge Vektörleri</span>
+                            <span id="auto-btn-label" class="text-intlOrange font-semibold">AÇIK</span>
+                        </button>
+                        <div class="hairline-box py-2.5 px-3 font-mono text-xs text-slateMuted flex items-center justify-between">
+                            <span>Çalışma Modu:</span>
+                            <span class="text-ink font-semibold">Gömülü & Kenar (Edge) AI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. WHY WE SEEK GRANT / CASH SPONSORSHIP (TRANSPARENT USE OF FUNDS) -->
+        <section id="fonlama" class="hairline-b">
+            <div class="p-6 sm:p-10 hairline-b bg-paper">
+                <div class="font-mono text-xs uppercase tracking-widest text-intlOrange mb-2">03 — NAKDİ HİBE & AR-GE SPONSORLUK MODELİ</div>
+                <h2 class="font-serif text-3xl sm:text-4xl text-ink mb-3">Neden Finansal Sponsorluk / Hibe Desteği Arıyoruz?</h2>
+                <p class="text-sm sm:text-base text-slateMuted max-w-3xl leading-relaxed">
+                    Şirketleşme öncesi kuluçka aşamasında yürüttüğümüz medikal ve otonom yazılım projelerimizin temel algoritma geliştirme süreçleri kendi mühendislik ekibimiz tarafından tamamlanmıştır. Geliştirdiğimiz sistemlerin <strong>donanım üstü testlerini tamamlamak, bilgi işlem (GPU) kapasitemizi büyütmek ve saha doğrulamalarını hızlandırmak</strong> amacıyla kurumların <strong>nakdi Ar-Ge sponsorluğu / hibe fonu</strong> desteğini arıyoruz.
+                </p>
+            </div>
+
+            <!-- Use of Funds Grid -->
+            <div class="grid grid-cols-12 hairline-b bg-paperMuted/30">
+                <div class="col-span-12 md:col-span-4 p-6 sm:p-8 hairline-b md:hairline-b-0 md:hairline-r">
+                    <div class="font-mono text-xs text-intlOrange font-semibold mb-2">FON KULLANIM ALANI 01 // %40</div>
+                    <h3 class="text-lg font-semibold text-ink mb-2">GPU & Hesaplama Altyapısı</h3>
+                    <p class="text-sm text-slateMuted leading-relaxed">
+                        3B tıbbi görüntü işleme ve gerçek zamanlı otonom algılama modellerinin eğitimi, optimizasyonu ve yüksek hızlı iş istasyonu/sunucu gereksinimlerinin karşılanması.
+                    </p>
+                </div>
+                <div class="col-span-12 md:col-span-4 p-6 sm:p-8 hairline-b md:hairline-b-0 md:hairline-r">
+                    <div class="font-mono text-xs text-intlOrange font-semibold mb-2">FON KULLANIM ALANI 02 // %35</div>
+                    <h3 class="text-lg font-semibold text-ink mb-2">Test Donanımı & Sensör Tedariki</h3>
+                    <p class="text-sm text-slateMuted leading-relaxed">
+                        Klinik navigasyon doğrulaması için optik takip kameraları, kalibrasyon fantomları, gömülü işlemci kartları ve prototip elektronik bileşenlerin satın alınması.
+                    </p>
+                </div>
+                <div class="col-span-12 md:col-span-4 p-6 sm:p-8">
+                    <div class="font-mono text-xs text-intlOrange font-semibold mb-2">FON KULLANIM ALANI 03 // %25</div>
+                    <h3 class="text-lg font-semibold text-ink mb-2">Prototip Doğrulama & Saha Testleri</h3>
+                    <p class="text-sm text-slateMuted leading-relaxed">
+                        Geliştirilen medikal ve otonom sistemlerin laboratuvar testleri, ulusal/uluslararası teknoloji yarışması süreçleri ve ticarileşme öncesi doğrulama giderleri.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Sponsorship Tiers & Corporate Benefits -->
+            <div class="p-6 sm:p-10 bg-paper">
+                <div class="font-mono text-xs uppercase tracking-widest text-slateMuted mb-6">DESTEKÇİ KURUMLARA SAĞLANAN KARŞILIKLAR & SPONSORLUK SEÇENEKLERİ</div>
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-12 lg:col-span-4 hairline-box p-6 sm:p-8 flex flex-col justify-between bg-paper">
+                        <div>
+                            <div class="font-mono text-xs uppercase tracking-widest text-slateLight mb-2">SEÇENEK A</div>
+                            <h4 class="text-xl font-semibold text-ink mb-3">Ar-Ge Destek Sponsoru</h4>
+                            <p class="text-sm text-slateMuted leading-relaxed mb-6">
+                                Belirli bir donanım/test kaleminin finansmanı veya kuluçka bütçesine doğrudan nakdi katkı sağlamak isteyen kurumlar için başlangıç paketi.
+                            </p>
+                            <ul class="space-y-2.5 text-xs text-ink font-mono">
+                                <li>■ Web sitemizde (ramazanoglu.tech) Resmi Ar-Ge Destekçisi olarak logo ve kurum adı gösterimi</li>
+                                <li>■ Proje teknik raporlarında ve açık kaynak/akademik çıktılarda teşekkür kaydı</li>
+                                <li>■ Dönemlik Ar-Ge ilerleme bülteni paylaşımı</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12 lg:col-span-4 hairline-box p-6 sm:p-8 flex flex-col justify-between bg-paper border-ink border-2">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="font-mono text-xs uppercase tracking-widest text-intlOrange font-semibold">SEÇENEK B // ÖNERİLEN</span>
+                                <span class="font-mono text-[10px] px-2 py-0.5 bg-intlOrange text-paper uppercase">ANA PAYDAŞ</span>
+                            </div>
+                            <h4 class="text-xl font-semibold text-ink mb-3">Stratejik Kuluçka & Ar-Ge Sponsoru</h4>
+                            <p class="text-sm text-slateMuted leading-relaxed mb-6">
+                                Medikal yazılım ve otonom sistem projelerimizin prototipleme fazına ana finansal hibe/sponsorluk desteği sağlayan kurumlar için kapsamlı iş birliği modeli.
+                            </p>
+                            <ul class="space-y-2.5 text-xs text-ink font-mono">
+                                <li>■ Tüm ulusal ve uluslararası yarışma, lansman ve tanıtımlarda Ana Sponsor görünürlüğü</li>
+                                <li>■ Geliştirilen yazılım arayüzlerinde ve prototip ünitelerde kurumsal logo yerleşimi</li>
+                                <li>■ Şirketleşme sonrasında geliştirilen teknolojilerde öncelikli ticari/teknik partnerlik hakkı</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-span-12 lg:col-span-4 hairline-box p-6 sm:p-8 flex flex-col justify-between bg-paper">
+                        <div>
+                            <div class="font-mono text-xs uppercase tracking-widest text-slateLight mb-2">SEÇENEK C</div>
+                            <h4 class="text-xl font-semibold text-ink mb-3">Esnek Nakdi Hibe Desteği</h4>
+                            <p class="text-sm text-slateMuted leading-relaxed mb-6">
+                                Kurumunuzun kendi Ar-Ge / kurumsal sosyal sorumluluk bütçesi doğrultusunda uygun gördüğü serbest tutarda doğrudan nakdi hibe desteği.
+                            </p>
+                            <ul class="space-y-2.5 text-xs text-ink font-mono">
+                                <li>■ Kurumunuzun bütçe politikasına göre esnek destek tutarı</li>
+                                <li>■ Hibe tutarının kullanıldığı donanım ve Ar-Ge kalemlerinin şeffaf raporlanması</li>
+                                <li>■ Kurumsal iletişim ve sosyal medya kanallarında sponsorluk duyurusu</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. DIRECT CONTACT & NEXT STEP -->
+        <section id="iletisim" class="p-6 sm:p-12 lg:p-16 bg-paper">
+            <div class="grid grid-cols-12 gap-8 items-center">
+                <div class="col-span-12 lg:col-span-7">
+                    <div class="font-mono text-xs uppercase tracking-widest text-intlOrange mb-2">04 — DOĞRUDAN İLETİŞİM</div>
+                    <h2 class="font-serif text-3xl sm:text-4xl text-ink mb-4">Sponsorluk ve Hibe Süreci İçin İletişime Geçin</h2>
+                    <p class="text-sm sm:text-base text-slateMuted leading-relaxed max-w-xl">
+                        Kurumunuzun ayırabileceği nakdi sponsorluk/hibe bütçesi doğrultusunda süreç detaylarını ve banka/aktarım bilgilerini doğrudan yazılı olarak paylaşabiliriz.
+                    </p>
+                </div>
+                <div class="col-span-12 lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3">
+                    <button onclick="copyPartnerEmail()" class="w-full bg-ink text-paper px-6 py-4 font-mono text-xs uppercase tracking-widest hover:bg-intlOrange transition-colors flex items-center justify-between">
+                        <span>E-POSTA ADRESİNİ KOPYALA</span>
+                        <span>partners@ramazanoglu.tech</span>
+                    </button>
+                    <a href="mailto:partners@ramazanoglu.tech?subject=Ramazano%C4%9Flu%20Tech%20//%20Ar-Ge%20Sponsorluk%20ve%20Hibe%20Deste%C4%9Fi" class="w-full hairline-box bg-paper px-6 py-4 font-mono text-xs uppercase tracking-widest text-ink hover:bg-paperMuted transition-colors flex items-center justify-between">
+                        <span>DOĞRUDAN E-POSTA GÖNDER</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="hairline-t p-6 sm:px-10 sm:py-6 bg-paperMuted/40 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slateMuted">
+            <div>RAMAZANOĞLU TECH // BAĞIMSIZ AR-GE VE MÜHENDİSLİK KULUÇKASI</div>
+            <div><a href="/" class="hover:text-ink underline">ramazanoglu.tech</a> &bull; partners@ramazanoglu.tech</div>
+        </footer>
+    </div>
+
+    <!-- INTERACTIVE SIMULATION SCRIPTS -->
+    <script>
+        function copyPartnerEmail() {
+            navigator.clipboard.writeText('partners@ramazanoglu.tech');
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-16', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-16', 'opacity-0'), 2500);
+        }
+
+        // --- SIMULATION 1: 3D MEDICAL NAVIGATION CANVAS ---
+        const medCanvas = document.getElementById('medCanvas');
+        const mCtx = medCanvas.getContext('2d');
+        let showSafetyZone = true;
+        let probeX = 280, probeY = 110;
+        let targetX = 280, targetY = 165;
+        let angle = 0;
+
+        medCanvas.addEventListener('mousemove', (e) => {
+            const rect = medCanvas.getBoundingClientRect();
+            probeX = ((e.clientX - rect.left) / rect.width) * medCanvas.width;
+            probeY = ((e.clientY - rect.top) / rect.height) * medCanvas.height;
+        });
+
+        function toggleMedLayer() {
+            showSafetyZone = !showSafetyZone;
+            document.getElementById('med-btn-label').textContent = showSafetyZone ? 'AKTİF' : 'KAPALI';
+        }
+
+        function drawMedSim() {
+            mCtx.fillStyle = '#0D0E11';
+            mCtx.fillRect(0, 0, medCanvas.width, medCanvas.height);
+
+            // Grid lines
+            mCtx.strokeStyle = 'rgba(255,255,255,0.05)';
+            mCtx.lineWidth = 1;
+            for (let x = 0; x < medCanvas.width; x += 28) {
+                mCtx.beginPath(); mCtx.moveTo(x, 0); mCtx.lineTo(x, medCanvas.height); mCtx.stroke();
+            }
+            for (let y = 0; y < medCanvas.height; y += 28) {
+                mCtx.beginPath(); mCtx.moveTo(0, y); mCtx.lineTo(medCanvas.width, y); mCtx.stroke();
+            }
+
+            angle += 0.015;
+
+            // Simulated 3D Anatomical Contour & Nerve Canal
+            mCtx.save();
+            mCtx.strokeStyle = 'rgba(255,255,255,0.22)';
+            mCtx.lineWidth = 1.5;
+            for (let r = 45; r <= 95; r += 16) {
+                mCtx.beginPath();
+                mCtx.ellipse(targetX, targetY, r * 1.4, r * 0.75, Math.sin(angle) * 0.08, 0, Math.PI * 2);
+                mCtx.stroke();
+            }
+
+            // Critical Nerve / Vessel Structure
+            mCtx.strokeStyle = '#D9381E';
+            mCtx.lineWidth = 2.5;
+            mCtx.beginPath();
+            mCtx.moveTo(80, targetY + 25);
+            mCtx.bezierCurveTo(200, targetY - 15, 340, targetY + 35, 480, targetY - 5);
+            mCtx.stroke();
+
+            // Safety Corridor (2.0 mm threshold)
+            const dx = probeX - targetX;
+            const dy = probeY - targetY;
+            const distPx = Math.sqrt(dx * dx + dy * dy);
+            const distMm = Math.max(0.2, (distPx / 22)).toFixed(2);
+            const isDanger = distMm < 2.0;
+
+            if (showSafetyZone) {
+                mCtx.strokeStyle = isDanger ? 'rgba(217, 56, 30, 0.85)' : 'rgba(16, 185, 129, 0.45)';
+                mCtx.setLineDash([4, 4]);
+                mCtx.beginPath();
+                mCtx.arc(targetX, targetY, 44, 0, Math.PI * 2);
+                mCtx.stroke();
+                mCtx.setLineDash([]);
+            }
+
+            // Target Fiducial
+            mCtx.fillStyle = '#10B981';
+            mCtx.beginPath();
+            mCtx.arc(targetX, targetY, 4, 0, Math.PI * 2);
+            mCtx.fill();
+
+            // Surgical Tool Vector & Crosshair
+            mCtx.strokeStyle = isDanger ? '#D9381E' : '#38BDF8';
+            mCtx.lineWidth = 1.5;
+            mCtx.beginPath();
+            mCtx.moveTo(probeX - 45, probeY - 60);
+            mCtx.lineTo(probeX, probeY);
+            mCtx.stroke();
+
+            mCtx.beginPath();
+            mCtx.arc(probeX, probeY, 9, 0, Math.PI * 2);
+            mCtx.stroke();
+
+            // Distance Line
+            mCtx.strokeStyle = 'rgba(255,255,255,0.3)';
+            mCtx.setLineDash([2, 3]);
+            mCtx.beginPath();
+            mCtx.moveTo(probeX, probeY);
+            mCtx.lineTo(targetX, targetY);
+            mCtx.stroke();
+            mCtx.setLineDash([]);
+
+            mCtx.restore();
+
+            // Update DOM Readout
+            const distEl = document.getElementById('med-dist');
+            if (isDanger) {
+                distEl.textContent = `${distMm} mm (KRİTİK EŞİK UYARISI!)`;
+                distEl.className = 'text-[#D9381E] font-semibold';
+            } else {
+                distEl.textContent = `${distMm} mm (GÜVENLİ KORİDOR)`;
+                distEl.className = 'text-emerald-400 font-semibold';
+            }
+
+            requestAnimationFrame(drawMedSim);
+        }
+
+        // --- SIMULATION 2: REAL-TIME AUTONOMOUS VISION CANVAS ---
+        const autoCanvas = document.getElementById('autoCanvas');
+        const aCtx = autoCanvas.getContext('2d');
+        let showVectors = true;
+        const targets = [
+            { x: 120, y: 90, vx: 1.4, vy: 0.7, w: 54, h: 38, id: 'OBJ-01', conf: '0.98' },
+            { x: 340, y: 150, vx: -1.1, vy: 0.9, w: 62, h: 42, id: 'OBJ-02', conf: '0.96' },
+            { x: 240, y: 70, vx: 0.9, vy: -1.2, w: 48, h: 34, id: 'OBJ-03', conf: '0.99' },
+            { x: 430, y: 110, vx: -1.3, vy: -0.8, w: 52, h: 36, id: 'OBJ-04', conf: '0.95' }
+        ];
+
+        autoCanvas.addEventListener('click', (e) => {
+            const rect = autoCanvas.getBoundingClientRect();
+            const cx = ((e.clientX - rect.left) / rect.width) * autoCanvas.width;
+            const cy = ((e.clientY - rect.top) / rect.height) * autoCanvas.height;
+            targets.push({
+                x: cx, y: cy,
+                vx: (Math.random() - 0.5) * 2.6,
+                vy: (Math.random() - 0.5) * 2.6,
+                w: 50, h: 36,
+                id: `OBJ-0${targets.length + 1}`,
+                conf: '0.97'
+            });
+            if (targets.length > 7) targets.shift();
+            document.getElementById('auto-telemetry').textContent = `HEDEF TAKİBİ: ${targets.length} NESNE | 145 FPS`;
+        });
+
+        function toggleAutoVectors() {
+            showVectors = !showVectors;
+            document.getElementById('auto-btn-label').textContent = showVectors ? 'AÇIK' : 'KAPALI';
+        }
+
+        function drawAutoSim() {
+            aCtx.fillStyle = '#0D0E11';
+            aCtx.fillRect(0, 0, autoCanvas.width, autoCanvas.height);
+
+            // Horizon & Spatial Grid
+            aCtx.strokeStyle = 'rgba(255,255,255,0.05)';
+            for (let x = 0; x < autoCanvas.width; x += 35) {
+                aCtx.beginPath(); aCtx.moveTo(x, 0); aCtx.lineTo(x, autoCanvas.height); aCtx.stroke();
+            }
+            for (let y = 0; y < autoCanvas.height; y += 35) {
+                aCtx.beginPath(); aCtx.moveTo(0, y); aCtx.lineTo(autoCanvas.width, y); aCtx.stroke();
+            }
+
+            targets.forEach((t) => {
+                t.x += t.vx;
+                t.y += t.vy;
+                if (t.x < 30 || t.x > autoCanvas.width - 30) t.vx *= -1;
+                if (t.y < 30 || t.y > autoCanvas.height - 30) t.vy *= -1;
+
+                // Bounding box
+                aCtx.strokeStyle = '#10B981';
+                aCtx.lineWidth = 1.5;
+                aCtx.strokeRect(t.x - t.w / 2, t.y - t.h / 2, t.w, t.h);
+
+                // Label
+                aCtx.fillStyle = '#10B981';
+                aCtx.font = '10px "JetBrains Mono", monospace';
+                aCtx.fillText(`${t.id} [${t.conf}]`, t.x - t.w / 2, t.y - t.h / 2 - 5);
+
+                // Kalman Predicted Trajectory Vector
+                if (showVectors) {
+                    aCtx.strokeStyle = '#D9381E';
+                    aCtx.beginPath();
+                    aCtx.moveTo(t.x, t.y);
+                    aCtx.lineTo(t.x + t.vx * 26, t.y + t.vy * 26);
+                    aCtx.stroke();
+                }
+            });
+
+            requestAnimationFrame(drawAutoSim);
+        }
+
+        drawMedSim();
+        drawAutoSim();
+    </script>
+</body>
+</html>
